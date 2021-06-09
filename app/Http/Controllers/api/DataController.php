@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\DataModel;
 class DataController extends Controller
 {
+    function __construct() {
+
+        if (!isset($_COOKIE['token']) ) {
+            setcookie('token',substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(200/strlen($x)) )),1,200));
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,10 @@ class DataController extends Controller
      */
     public function index()
     {
-        //
-        $data = DataModel::all();
+        $data = DataModel::where([
+            'token'=>$_COOKIE['token'],
+            'status'=>0
+        ])->orderBy('id','desc')->get();
         return $data;
     }
 
@@ -40,6 +48,8 @@ class DataController extends Controller
         $data = new DataModel;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->token = $_COOKIE['token'];
+        $data->status = 0;
         $data->save();
     }
 

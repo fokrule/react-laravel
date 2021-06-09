@@ -22,3 +22,4 @@ Route::get('/',[App\Http\Controllers\api\DataController::class, 'index']);
 Route::post('/store',[App\Http\Controllers\api\DataController::class, 'store']);
 Route::get('/show/{id}',[App\Http\Controllers\api\DataController::class, 'show']);
 Route::put('/update/{id}',[App\Http\Controllers\api\DataController::class, 'update']);
+Route::delete('/destroy/{id}',[App\Http\Controllers\api\DataController::class, 'destroy']);
