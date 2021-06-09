@@ -45,6 +45,9 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
+        if (!isset($_COOKIE['token']) ) {
+            setcookie('token',substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(200/strlen($x)) )),1,200));
+        }
         $data = new DataModel;
         $data->name = $request->name;
         $data->email = $request->email;
