@@ -16289,12 +16289,14 @@ function Add() {
 
             case 7:
               _context.next = 9;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().post('https://todo.fokrule.com/api/store', {
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("https://todo.fokrule.com" + '/api/store', {
                 name: name,
                 email: email
               }).then(function (response) {
-                console.warn(response);
                 $(".success").html('Data saved successfully');
+                window.setTimeout(function () {
+                  window.location = "https://todo.fokrule.com" + '/';
+                }, 1000);
               }, function (error) {
                 console.warn(error);
               });
@@ -16427,7 +16429,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/Button.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -16452,7 +16456,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+  return {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap'
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch'
+    },
+    labelRoot: {
+      fontSize: [[30], '!important'],
+      margin: [[5, 10], '!important']
+    }
+  };
+});
 function Edit(id) {
+  var classes = useStyles();
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       name = _useState2[0],
@@ -16473,7 +16498,7 @@ function Edit(id) {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().get('https://todo.fokrule.com/api/show/' + id.match.params.id).then(function (res) {
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://todo.fokrule.com" + '/api/show/' + id.match.params.id).then(function (res) {
                   setName(res.data.name);
                   setEmail(res.data.email);
                 })["catch"](function (error) {
@@ -16519,12 +16544,15 @@ function Edit(id) {
             case 0:
               e.preventDefault();
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().put('https://todo.fokrule.com/api/update/' + id.match.params.id, {
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().put("https://todo.fokrule.com" + '/api/update/' + id.match.params.id, {
                 name: name,
                 email: email
               }).then(function (response) {
                 console.warn(response);
                 $(".success").html('Data saved successfully');
+                window.setTimeout(function () {
+                  window.location = "https://todo.fokrule.com" + '/';
+                }, 1000);
               }, function (error) {
                 console.warn(error);
               });
@@ -16542,50 +16570,71 @@ function Edit(id) {
     return _editData.apply(this, arguments);
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "form-group",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-          htmlFor: "exampleInputEmail1",
-          children: "Name"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-          type: "text",
-          value: name,
-          onChange: function onChange(e) {
-            return setName(e.target.value);
-          },
-          className: "form-control",
-          id: "exampleInputEmail1",
-          "aria-describedby": "emailHelp",
-          placeholder: "Enter email"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("small", {
-          id: "emailHelp",
-          className: "form-text text-muted",
-          children: "We'll never share your email with anyone else."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "form-group",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-          htmlFor: "exampleInputPassword1",
-          children: "Email address"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-          type: "email",
-          value: email,
-          onChange: function onChange(e) {
-            return setEmail(e.target.value);
-          },
-          className: "form-control",
-          id: "exampleInputPassword1",
-          placeholder: "Password"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      style: {
+        color: 'green',
+        marginLeft: '5px',
+        marginTop: '10px'
+      },
+      className: "success"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      className: classes.root,
+      noValidate: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        style: {
+          marginLeft: '5px',
+          marginTop: '10px'
+        },
+        children: "Enter the title"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__.default, {
+        id: "standard-full-width",
+        style: {
+          margin: 8
+        },
+        placeholder: "Enter title",
+        fullWidth: true,
+        margin: "normal",
+        InputLabelProps: {
+          shrink: true
+        },
+        value: name,
+        onChange: function onChange(e) {
+          return setName(e.target.value);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        style: {
+          marginLeft: '5px',
+          marginTop: '10px'
+        },
+        children: "Enter details"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__.default, {
+        id: "standard-full-width",
+        style: {
+          margin: 8
+        },
+        placeholder: "Enter full text",
+        fullWidth: true,
+        margin: "normal",
+        InputLabelProps: {
+          shrink: true
+        },
+        value: email,
+        onChange: function onChange(e) {
+          return setEmail(e.target.value);
+        },
+        multiline: true,
+        rows: 12
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__.default, {
         variant: "contained",
+        style: {
+          marginLeft: '5px'
+        },
         color: "primary",
         onClick: editData,
         children: "Update"
       })]
-    })
+    })]
   });
 }
 
@@ -16750,7 +16799,7 @@ function Home() {
           switch (_context.prev = _context.next) {
             case 0:
               try {
-                axios__WEBPACK_IMPORTED_MODULE_2___default().get('https://todo.fokrule.com/api/').then(function (response) {
+                axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://todo.fokrule.com" + '/api/').then(function (response) {
                   setData(response.data);
                 });
               } catch (error) {
@@ -16784,7 +16833,7 @@ function Home() {
               console.warn(id);
 
               try {
-                axios__WEBPACK_IMPORTED_MODULE_2___default().delete('https://todo.fokrule.com/api/destroy/' + id);
+                axios__WEBPACK_IMPORTED_MODULE_2___default().delete("https://todo.fokrule.com" + '/api/destroy/' + id);
                 fetchData();
               } catch (error) {
                 console.log(error);
@@ -16828,8 +16877,9 @@ function Home() {
               children: row.email
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                className: "btn btn-success mb-1",
                 to: "/edit/" + row.id,
-                children: "edit"
+                children: "Edit"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                   type: "hidden",

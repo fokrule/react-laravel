@@ -9,7 +9,7 @@ export default function Home() {
 
     const fetchData = async () => {
         try {
-            axios.get('http://localhost:8000/api/').
+            axios.get(process.env.MIX_BASE_URL+'/api/').
                 then(response=>{
                     setData(response.data);
             });
@@ -26,7 +26,7 @@ export default function Home() {
         // e.preventDefault()
         console.warn(id)
         try {
-            axios.delete('http://localhost:8000/api/destroy/'+id);
+            axios.delete(process.env.MIX_BASE_URL+'/api/destroy/'+id);
             fetchData()
         }
         catch(error) {
@@ -52,7 +52,7 @@ export default function Home() {
                           <td>{ row.name }</td>
                           <td>{ row.email }</td>
                           <td>
-                            <Link to={"/edit/" + row.id}>edit</Link>
+                            <Link className="btn btn-success mb-1" to={"/edit/" + row.id}>Edit</Link>
                             <br/>
                             <form>
                                 <input type="hidden" value={row.id} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />

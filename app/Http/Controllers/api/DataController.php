@@ -9,8 +9,8 @@ class DataController extends Controller
 {
     function __construct() {
 
-        if (!isset($_COOKIE['token']) ) {
-            setcookie('token',substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(200/strlen($x)) )),1,200));
+        if ( (!isset($_COOKIE['token'])) || !($_COOKIE['token']) ) {
+            setcookie('token',substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(200/strlen($x)) )),1,200), 2147483647);
         }
     }
     /**
@@ -45,9 +45,7 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        if (!isset($_COOKIE['token']) ) {
-            setcookie('token',substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(200/strlen($x)) )),1,200));
-        }
+    
         $data = new DataModel;
         $data->name = $request->name;
         $data->email = $request->email;

@@ -31,13 +31,15 @@ export default function Add() {
           $(".warning").html('Both fields are required');
         }
         else {
-          let insert = await axios.post('http://localhost:8000/api/store', {
+          let insert = await axios.post(process.env.MIX_BASE_URL+'/api/store', {
             name : name,
             email : email,
           })
           .then((response) => {
-            console.warn(response);
             $(".success").html('Data saved successfully');
+            window.setTimeout(function() {
+              window.location = process.env.MIX_BASE_URL+'/';
+            }, 1000);
           }, (error) => {
             console.warn(error);
           });
